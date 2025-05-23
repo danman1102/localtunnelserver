@@ -117,6 +117,13 @@ export default function(opt) {
 
     const appCallback = app.callback();
 
+    // new: use the Render-provided port, fallback to 3000 locally
+const PORT = process.env.PORT || 3000;
+
+server.listen(PORT, () => {
+  console.log(`✅ LocalTunnel server listening on port ${PORT}`);
+});
+
     server.on('request', (req, res) => {
         // without a hostname, we won't know who the request is for
         const hostname = req.headers.host;
